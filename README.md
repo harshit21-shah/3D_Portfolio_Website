@@ -2,7 +2,7 @@
 
 > Production-grade AI systems portfolio built with React, Three.js, and GSAP.
 
-**Live:** [harshitshah.dev](harshitshahworks.netlify.app) &nbsp;·&nbsp; **LinkedIn:** [linkedin.com/in/harshit-shah-1b3416270](https://www.linkedin.com/in/harshit-shah-1b3416270/)
+**Live:** [harshitshah.works](https://harshitshahworks.netlify.app) &nbsp;·&nbsp; **LinkedIn:** [linkedin.com/in/harshit-shah-1b3416270](https://www.linkedin.com/in/harshit-shah-1b3416270/)
 
 ---
 
