@@ -11,7 +11,7 @@ const Contact = () => {
     const form = e.currentTarget;
     const data = new FormData(form);
     try {
-      const res = await fetch("https://formspree.io/f/xpwzgkqb", {
+      const res = await fetch("https://formspree.io/f/xrerqbba", {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
@@ -39,13 +39,12 @@ const Contact = () => {
           <a href="mailto:shahharshit777@gmail.com" className="contact-cta-primary" data-cursor="disable">
             Send me an email <MdArrowOutward />
           </a>
-          <a href="/Harshit_Resume.pdf" target="_blank" rel="noreferrer" className="contact-cta-secondary" data-cursor="disable">
+          <a href="/Akash_Malhotra.pdf" target="_blank" rel="noreferrer" className="contact-cta-secondary" data-cursor="disable">
             Download Resume <MdArrowOutward />
           </a>
         </div>
 
         <div className="contact-body">
-          {/* Contact form */}
           <div className="contact-form-wrap">
             <p className="contact-form-label">Or send a message directly</p>
             {formState === "sent" ? (
@@ -55,37 +54,11 @@ const Contact = () => {
             ) : (
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="contact-form-row">
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                    className="contact-input"
-                    data-cursor="disable"
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your email"
-                    required
-                    className="contact-input"
-                    data-cursor="disable"
-                  />
+                  <input type="text" name="name" placeholder="Your name" required className="contact-input" data-cursor="disable" />
+                  <input type="email" name="email" placeholder="Your email" required className="contact-input" data-cursor="disable" />
                 </div>
-                <textarea
-                  name="message"
-                  placeholder="What are you building?"
-                  required
-                  rows={4}
-                  className="contact-input contact-textarea"
-                  data-cursor="disable"
-                />
-                <button
-                  type="submit"
-                  className="contact-form-submit"
-                  disabled={formState === "sending"}
-                  data-cursor="disable"
-                >
+                <textarea name="message" placeholder="What are you building?" required rows={4} className="contact-input contact-textarea" data-cursor="disable" />
+                <button type="submit" className="contact-form-submit" disabled={formState === "sending"} data-cursor="disable">
                   {formState === "sending" ? "Sending…" : "Send Message"}
                 </button>
                 {formState === "error" && (
@@ -95,7 +68,6 @@ const Contact = () => {
             )}
           </div>
 
-          {/* Info columns */}
           <div className="contact-flex">
             <div className="contact-box">
               <h4>Education</h4>
@@ -109,7 +81,7 @@ const Contact = () => {
             </div>
             <div className="contact-box">
               <h4>Connect</h4>
-              <a href="https://github.com/shahharshit777" target="_blank" rel="noreferrer" data-cursor="disable" className="contact-social">
+              <a href="https://github.com/harshit21-shah" target="_blank" rel="noreferrer" data-cursor="disable" className="contact-social">
                 GitHub <MdArrowOutward />
               </a>
               <a href="https://www.linkedin.com/in/harshit-shah-1b3416270/" target="_blank" rel="noreferrer" data-cursor="disable" className="contact-social">
