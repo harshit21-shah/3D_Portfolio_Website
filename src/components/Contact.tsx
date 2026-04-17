@@ -1,31 +1,9 @@
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
-import { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import "./styles/Contact.css";
 
 const Contact = () => {
-  const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setFormState("sending");
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    try {
-      const res = await fetch("https://formspree.io/f/xrerqbba", {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
-      if (res.ok) {
-        setFormState("sent");
-        form.reset();
-      } else {
-        setFormState("error");
-      }
-    } catch {
-      setFormState("error");
-    }
-  };
+  const [state, handleSubmit] = useForm("xrerqbba");
 
   return (
     <div className="contact-section section-container" id="contact">
@@ -47,7 +25,7 @@ const Contact = () => {
         <div className="contact-body">
           <div className="contact-form-wrap">
             <p className="contact-form-label">Or send a message directly</p>
-            {formState === "sent" ? (
+            {state.succeeded ? (
               <div className="contact-form-success">
                 Message sent — I'll get back to you soon.
               </div>
@@ -55,15 +33,16 @@ const Contact = () => {
               <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="contact-form-row">
                   <input type="text" name="name" placeholder="Your name" required className="contact-input" data-cursor="disable" />
-                  <input type="email" name="email" placeholder="Your email" required className="contact-input" data-cursor="disable" />
+                  <div style={{ flex: 1 }}>
+                    <input type="email" name="email" placeholder="Your email" required className="contact-input" style={{ width: "100%", boxSizing: "border-box" }} data-cursor="disable" />
+                    <ValidationError field="email" prefix="Email" errors={state.errors} className="contact-form-error" />
+                  </div>
                 </div>
                 <textarea name="message" placeholder="What are you building?" required rows={4} className="contact-input contact-textarea" data-cursor="disable" />
-                <button type="submit" className="contact-form-submit" disabled={formState === "sending"} data-cursor="disable">
-                  {formState === "sending" ? "Sending…" : "Send Message"}
+                <ValidationError field="message" prefix="Message" errors={state.errors} className="contact-form-error" />
+                <button type="submit" className="contact-form-submit" disabled={state.submitting} data-cursor="disable">
+                  {state.submitting ? "Sending…" : "Send Message"}
                 </button>
-                {formState === "error" && (
-                  <p className="contact-form-error">Something went wrong. Try emailing directly.</p>
-                )}
               </form>
             )}
           </div>
